@@ -17,7 +17,8 @@ async def insert_data(table_model, data):
         # Saves the change to the database
         connection.commit()
 
-        return result
+        # Returns the user id
+        return result.inserted_primary_key[0]
 
     # Throws an error if an entry already exists
     except IntegrityError as error:
@@ -36,3 +37,7 @@ def duplicate_error_extractor(error_message):
 
     else: 
         return "Couldn't find the duplicate value"
+
+# Joins a many table to a one table
+def join_tables_query(manys_table, manys_column, ones_table, ones_column):
+    return manys_table.join(ones_table, manys_column == ones_column)
