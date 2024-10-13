@@ -54,7 +54,7 @@ ingredients_table = Table(
     metadata,
     Column("Ingredient_ID", Integer, primary_key=True, autoincrement=True),
     Column("Ingredient_Name", String(100), nullable=False),
-    Column("Ingredient_Amount", String(10), nullable=False),
+    Column("Ingredient_Amount", String(100), nullable=False),
     Column("Ingredient_Unit", String(10), nullable=False),
     Column("Recipe_ID", Integer, nullable=False),
     ForeignKeyConstraint(['Recipe_ID'], ['Recipes.Recipe_ID'], 
