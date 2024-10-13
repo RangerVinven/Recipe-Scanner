@@ -139,8 +139,4 @@ async def generate_recipe(recipe: GenerateRecipe, request: Request):
     # Removes the User_ID before sending the recipe data to the user
     recipe_table_data.pop("User_ID", None)
 
-    # Removes the Recipe_ID from each of the steps
-    for step in extracted_recipe["Steps"]:
-        step.pop("Recipe_ID", None)
-
     return extracted_recipe
