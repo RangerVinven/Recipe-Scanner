@@ -95,6 +95,7 @@ async def generate_recipe(recipe: GenerateRecipe, request: Request):
 
     # Deletes the uploaded file
     openai_client.files.delete(file_upload_id)
+    os.remove("recipe_files/{}.html".format(file_name))
 
     # Saves the data to the Recipes table
     recipe_table_data = extracted_recipe["Extra_Information"]
