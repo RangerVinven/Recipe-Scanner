@@ -7,11 +7,11 @@ from sqlalchemy.exc import IntegrityError
 from utils.database_connector import connection
 
 # Tries to save the user into the database 
-async def insert_data(table_model, data):
+def insert_data(table_model, data):
 
     try:
         # Creates and executes the query
-        insert_query = insert(table_model).values(vars(data))
+        insert_query = insert(table_model).values(data)
         result = connection.execute(insert_query)
 
         # Saves the change to the database
