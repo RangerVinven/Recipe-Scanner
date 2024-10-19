@@ -57,7 +57,7 @@ async def create_user(user: CreateUser, response: Response):
     user.Password = hash_string(user.Password)
 
    # Inserts the user, and does the error handling
-    user_id = await insert_data(users_table, user)
+    user_id = insert_data(users_table, vars(user))
 
     # Creates the session_token and saves it to the database
     session_token = await create_session_token(user_id)
