@@ -11,7 +11,7 @@ def get_session_token(request: Request):
     cookies = request.cookies 
     return cookies["session_token"]
 
-def get_user_id(session_token):
+def get_user_id_from_session_token(session_token):
     # Joins the tables and finds the user ID
     table_join =  join_tables_query(session_tokens_table, session_tokens_table.c.User_ID, users_table, users_table.c.User_ID)
     select_query = select(users_table.c.User_ID).select_from(table_join).where(session_tokens_table.c.Session_Token == session_token)
@@ -20,3 +20,7 @@ def get_user_id(session_token):
     user_id = results.first()[0]
 
     return user_id
+
+def get_user_id(request: Request):
+    session_token = get_session_token(request)
+    return get_user_id_from_session_token(session_token)
